@@ -1,11 +1,27 @@
 {
   "name": "hashy",
   "version": "0.1.0",
+  "scripts": {
+    "test": "NODE_ENV=test ava --verbose"
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
   "dependencies": {
     "big.js": "^5.0.3",
     "crypto": "^1.0.1",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
     "xxhash": "^0.2.4"
+  },
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0"
   }
 }
