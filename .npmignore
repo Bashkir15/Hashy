@@ -1,6 +1,8 @@
 test
 src
+coverage.lcov
 .eslintrc.js
 .editorconfig
 .gitignore
+.nyc_output
 *.log
