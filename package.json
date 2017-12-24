@@ -2,6 +2,9 @@
   "name": "hashy",
   "version": "0.1.0",
   "dependencies": {
-    "big.js": "^5.0.3"
+    "big.js": "^5.0.3",
+    "crypto": "^1.0.1",
+    "fs": "0.0.1-security",
+    "xxhash": "^0.2.4"
   }
 }

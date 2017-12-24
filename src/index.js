@@ -1,4 +1,7 @@
 import Big from 'big.js';
+import { Stream } from 'xxhash';
+import { createReadStream } from 'fs';
+import { createHash } from 'crypto';
 
 const BaseTables = {
   26: "abcdefghijklmnopqrstuvwxyz",
@@ -39,4 +42,25 @@ export function transformBuffer(buffer, base, max) {
     return max === null
         ? output
         : output.slice(0, max)
+}
+
+export function getHash(
+    file,
+    hash = 'xxhash',
+    base = 52,
+    max = 10
+) {
+    return new Promise((resolve, reject) => {
+        try {
+            const hasher = hash === 'xxhash'
+                ? new Stream(0xcafebabe, 'buffer')
+                : createHash(hash);
+
+            createReadStream(file)
+                .pipe(hasher)
+                .on('finish', () => resolve(transformBuffer(hasher.read(), base, max)));
+        } catch (err) {
+            reject(err);
+        }
+    });
 }
