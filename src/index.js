@@ -66,7 +66,7 @@ export function getHash(
     });
 }
 
-export async function getHashedNamed(
+export async function getHashedName(
     name,
     hash = 'xxhash',
     base = 52,
