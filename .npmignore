@@ -1,0 +1,6 @@
+test
+src
+.eslintrc.js
+.editorconfig
+.gitignore
+*.log
