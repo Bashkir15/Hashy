@@ -2,7 +2,8 @@
   "name": "hashy",
   "version": "0.1.0",
   "scripts": {
-    "test": "NODE_ENV=test ava --verbose"
+    "test": "NODE_ENV=test nyc ava --verbose && npm run coverage",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "ava": {
     "require": [
@@ -22,6 +23,8 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "codecov": "^3.0.0",
+    "nyc": "^11.4.1"
   }
 }
