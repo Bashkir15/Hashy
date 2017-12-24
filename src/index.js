@@ -2,6 +2,7 @@ import Big from 'big.js';
 import { Stream } from 'xxhash';
 import { createReadStream } from 'fs';
 import { createHash } from 'crypto';
+import { extname } from 'path';
 
 const BaseTables = {
   26: "abcdefghijklmnopqrstuvwxyz",
@@ -63,4 +64,16 @@ export function getHash(
             reject(err);
         }
     });
+}
+
+export async function getHashedNamed(
+    name,
+    hash = 'xxhash',
+    base = 52,
+    max = 10
+) {
+    const hashed = await getHash(name);
+    const ext = extname(name);
+
+    return hashed + ext;
 }
