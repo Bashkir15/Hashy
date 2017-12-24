@@ -2,6 +2,9 @@
   "name": "hashy",
   "version": "0.1.0",
   "scripts": {
+    "build:cjs": "node build.js",
+    "build:es": "node build.js --es",
+    "build": "npm run build:cjs && npm run build:es",
     "test": "NODE_ENV=test nyc ava --verbose && npm run coverage",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
