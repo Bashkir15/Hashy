@@ -1,3 +1,5 @@
+import Big from 'big.js';
+
 const BaseTables = {
   26: "abcdefghijklmnopqrstuvwxyz",
   32: "123456789abcdefghjkmnpqrstuvwxyz", // no 0lio
@@ -8,3 +10,33 @@ const BaseTables = {
   62: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
   64: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_"
 };
+
+export function transformBuffer(buffer, base, max) {
+    const table = BaseTables[base];
+    if (!table) {
+        throw new Error(`Hashy does not support ${base} encoding`);
+    }
+
+    const readLength = buffer.length;
+
+    Big.DP = 0;
+    Big.rm = 0;
+
+    let b = new Big(0);
+    for (let i = readLength - 1; i >= 0; i--) {
+        b = b.times(256).plus(buffer[i]);
+    }
+
+    let output = '';
+    while (b.gt(0)) {
+        output = table[b.mod(base)] + output;
+        b = b.div(base);
+    }
+
+    Big.DP = 20;
+    Big.RM = 1;
+
+    return max === null
+        ? output
+        : output.slice(0, max)
+}

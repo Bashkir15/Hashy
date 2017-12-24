@@ -1,4 +1,7 @@
 {
-    "name": "hashy",
-    "version": "0.1.0"
+  "name": "hashy",
+  "version": "0.1.0",
+  "dependencies": {
+    "big.js": "^5.0.3"
+  }
 }
